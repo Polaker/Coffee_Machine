@@ -1,0 +1,68 @@
+type: edu
+custom_name: Hello, coffee!
+files:
+- name: src/machine/CoffeeMachine.java
+  visible: true
+  text: |
+    package machine;
+
+    public class CoffeeMachine {
+        public static void main(String[] args) {
+            System.out.println("Hello World!");
+        }
+    }
+  learner_created: false
+- name: test/CoffeeMachineTest.java
+  visible: false
+  text: |
+    import machine.CoffeeMachine;
+    import org.hyperskill.hstest.stage.StageTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testcase.TestCase;
+
+    import java.util.List;
+
+
+    public class CoffeeMachineTest extends StageTest<String> {
+
+        public CoffeeMachineTest() {
+            super(CoffeeMachine.class);
+        }
+
+        @Override
+        public List<TestCase<String>> generate() {
+            return List.of(
+                new TestCase<String>()
+                    .setInput("")
+                    .setAttach("Starting to make a coffee\n" +
+                        "Grinding coffee beans\n" +
+                        "Boiling water\n" +
+                        "Mixing boiled water with crushed coffee beans\n" +
+                        "Pouring coffee into the cup\n" +
+                        "Pouring some milk into the cup\n" +
+                        "Coffee is ready!")
+            );
+        }
+
+        @Override
+        public CheckResult check(String reply, String clue) {
+            boolean isCorrect = reply.trim().equals(clue.trim());
+            return new CheckResult(isCorrect,
+                "You should make coffee exactly " +
+                    "like in the example");
+        }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/33/stages/175/implement#comment
+status: Failed
+feedback:
+  message: "Exception in test #1\n\nProbably your program run out of input (Scanner\
+    \ tried to read more than expected).\n\njava.util.NoSuchElementException\r\n\t\
+    at java.base/java.util.Scanner.throwFor(Scanner.java:937)\r\n\tat java.base/java.util.Scanner.next(Scanner.java:1594)\r\
+    \n\tat java.base/java.util.Scanner.nextInt(Scanner.java:2258)\r\n\tat java.base/java.util.Scanner.nextInt(Scanner.java:2212)\r\
+    \n\tat machine.CoffeeMachine.main(CoffeeMachine.java:7)\n\nPlease find below the\
+    \ output of your program during this failed test.\nNote that the &#39;&gt;&#39;\
+    \ character indicates the beginning of the input line.\n\n---\n\nWrite how many\
+    \ cups of coffe you will need:\n\n&gt;"
+  time: Thu, 03 Dec 2020 22:27:37 UTC
+record: 1
